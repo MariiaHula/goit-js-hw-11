@@ -74,8 +74,9 @@ async function onIntersectionObserverScroll(entries) {
     
     try {    
         const data = await pixabayApi.getGalleryCard();
-
-        if (pixabayApi.page === Math.floor(data.totalHits / pixabayApi.per_page)) {  
+        console.log(pixabayApi.page);
+        console.log(Math.floor(data.totalHits / pixabayApi.per_page));
+        if (pixabayApi.page >= Math.ceil(data.totalHits / pixabayApi.per_page)) {  
             scrollObserver.unobserve(refs.loader);
             refs.loader.classList.add('is-hidden');
             Notiflix.Notify.info('Sorry, but you have reached the end of the search results');
